@@ -11,6 +11,21 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-        <div>TODO write content</div>
+        <h2>Triangle Calculator</h2>
+        <div>
+            <form id="tForm" name="tForm" method="POST" action="calculator?shape=triangle">
+                <div>
+                    Enter side A:&emsp;
+                    <input type="number" id="sideA" name="a" placeholder="ex. 5">
+                </div>
+                <div>
+                    Enter side B:&emsp;
+                    <input type="number" id="sideB" name="b" placeholder="ex. 10">
+                </div>
+                <div>
+                    <input type="submit" id="submit" name="submit" value="Submit">
+                </div>
+            </form>
+        </div>
     </body>
 </html>

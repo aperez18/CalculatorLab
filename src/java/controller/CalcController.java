@@ -2,16 +2,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.CalculatorService;
 
 
 @WebServlet(name = "CalcController", urlPatterns = {"/calculator"})
 public class CalcController extends HttpServlet {
 
+    private final String SHAPE = "shape";
+    private final String DESTINATION = "answer.jsp";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -24,18 +29,26 @@ public class CalcController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CalcController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CalcController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        String shape = request.getParameter(SHAPE);
+        CalculatorService calcServ = new CalculatorService(shape);
+        
+        if(request.getParameter("length") != null){
+            calcServ.setAttribute("length", Double.parseDouble(request.getParameter("length")));
         }
+        if(request.getParameter("width") != null){
+            calcServ.setAttribute("width", Double.parseDouble(request.getParameter("width")));
+        }
+        if(request.getParameter("radius") != null){
+            calcServ.setAttribute("radius", Double.parseDouble(request.getParameter("radius")));
+        }
+        if(request.getParameter("sideC")!= null){
+            calcServ.setAttribute("sideC", Double.parseDouble(request.getParameter("sideC")));
+        }
+        
+        request.setAttribute("answer", calcServ.getAnswer());
+        RequestDispatcher view = request.getRequestDispatcher(DESTINATION);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
