@@ -14,8 +14,8 @@ import model.CalculatorService;
 @WebServlet(name = "CalcController", urlPatterns = {"/calculator"})
 public class CalcController extends HttpServlet {
 
-    private final String SHAPE = "shape";
-    private final String DESTINATION = "answer.jsp";
+    private static final String SHAPE = "shape";
+    private static final String DESTINATION = "answer.jsp";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

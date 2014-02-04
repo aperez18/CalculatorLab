@@ -2,24 +2,39 @@ package model;
 
 public class CircleCalculator implements CalculatorStrategy{
 
+    private final String RADIUS = "radius";
+    private double r;
+    
     @Override
     public double getAnswer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Math.PI*(r*r);
     }
 
     @Override
     public void setAttribute(String param, double value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(param == null || param.isEmpty()){
+            throw new IllegalArgumentException();
+        }else if(param.equals(RADIUS)){
+            r = value;
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
     public double getAttribute(String param) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(param == null || param.isEmpty()){
+            throw new IllegalArgumentException();
+        }else if(param.equals(RADIUS)){
+            return r;
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
     public String getShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Circle";
     }
     
 }
