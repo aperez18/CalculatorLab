@@ -42,8 +42,11 @@ public class CalcController extends HttpServlet {
         if(request.getParameter("radius") != null){
             calcServ.setAttribute("radius", Double.parseDouble(request.getParameter("radius")));
         }
-        if(request.getParameter("sideC")!= null){
-            calcServ.setAttribute("sideC", Double.parseDouble(request.getParameter("sideC")));
+        if(request.getParameter("sideA")!= null){
+            calcServ.setAttribute("sideA", Double.parseDouble(request.getParameter("sideA")));
+        }
+        if(request.getParameter("sideB")!= null){
+            calcServ.setAttribute("sideB", Double.parseDouble(request.getParameter("sideB")));
         }
         
         request.setAttribute("answer", calcServ.getAnswer());
